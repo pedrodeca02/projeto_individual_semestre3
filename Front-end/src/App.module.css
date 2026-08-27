@@ -1,0 +1,4 @@
+.conteudo {
+  width: min(100% - 32px, 950px);
+  margin: 32px auto;
+}

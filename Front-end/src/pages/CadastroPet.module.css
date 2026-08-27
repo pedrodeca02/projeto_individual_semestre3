@@ -1,0 +1,70 @@
+.container {
+  background: rgba(254, 249, 233);
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+}
+
+.titulo h2 {
+  margin: 0;
+  color: rgba(228, 94, 24);
+}
+
+.titulo p {
+  margin: 8px 0 24px;
+  color: rgba(228, 94, 24);
+}
+
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-weight: bold;
+  color: rgba(228, 94, 24);
+}
+
+.formulario input,
+.formulario select {
+  padding: 11px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: rgba(254, 249, 233);
+  color: #6d6a6a;
+}
+
+.formulario button {
+  grid-column: 1 / -1;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(228, 94, 24);
+  color: white;
+  cursor: pointer;
+}
+
+.formulario button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.sucesso {
+  margin-bottom: 0;
+  color: #33b621;
+}
+
+.erro {
+  margin-bottom: 0;
+  color: #b3261e;
+}
+
+@media (max-width: 650px) {
+  .formulario {
+    grid-template-columns: 1fr;
+  }
+}

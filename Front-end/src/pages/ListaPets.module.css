@@ -1,0 +1,36 @@
+.titulo h2 {
+  margin-bottom: 6px;
+  color: rgba(228, 94, 24);
+}
+
+.titulo p {
+  margin-top: 0;
+  color: rgba(228, 94, 24);
+}
+
+.lista {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.vazio {
+  margin-top: 24px;
+  background: rgba(254, 249, 233);
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  color: #666;
+}
+
+.erro {
+  color: #b3261e;
+}
+
+@media (max-width: 650px) {
+  .lista {
+    grid-template-columns: 1fr;
+  }
+}
