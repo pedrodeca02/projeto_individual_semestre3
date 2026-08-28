@@ -1,7 +1,10 @@
 import { useState } from 'react'
+import axios from 'axios'
+
 import styles from './CadastroPet.module.css'
 
-function CadastroPet({ adicionarPet }) {
+export function CadastroPet() {
+
   const [nome, setNome] = useState('')
   const [especie, setEspecie] = useState('')
   const [raca, setRaca] = useState('')
@@ -10,149 +13,136 @@ function CadastroPet({ adicionarPet }) {
   const [peso, setPeso] = useState('')
   const [nomeTutor, setNomeTutor] = useState('')
 
-  const [carregando, setCarregando] = useState(false)
   const [mensagem, setMensagem] = useState('')
-  const [erro, setErro] = useState('')
 
-  function cadastrar(event) {
-    event.preventDefault()
-
-    setMensagem('')
-    setErro('')
-
-    if (
-      !nome ||
-      !especie ||
-      !raca ||
-      !sexo ||
-      !idade ||
-      !peso ||
-      !nomeTutor
-    ) {
-      setErro('Preencha todos os campos.')
-      return
-    }
+  function cadastrarPet() {
 
     const novoPet = {
-      nome,
-      especie,
-      raca,
-      sexo,
+      nome: nome,
+      especie: especie,
+      raca: raca,
+      sexo: sexo,
       idade: Number(idade),
       peso: Number(peso),
-      nomeTutor,
+      nomeTutor: nomeTutor
     }
 
-    setCarregando(true)
+    axios.post("http://localhost:8080/pets", novoPet)
+      .then((response) => {
+        console.log(response)
+        setMensagem('Pet cadastrado com sucesso!')
+      })
 
-    // Nesta etapa o cadastro é local.
-    // Depois este ponto será trocado pelo POST para a API.
-    adicionarPet(novoPet)
-
-    setNome('')
-    setEspecie('')
-    setRaca('')
-    setSexo('')
-    setIdade('')
-    setPeso('')
-    setNomeTutor('')
-
-    setCarregando(false)
-    setMensagem('Pet cadastrado com sucesso!')
   }
 
   return (
-    <section className={styles.container}>
+
+    <section>
+
       <div className={styles.titulo}>
+
         <h2>Cadastrar Pet</h2>
-        <p>Preencha os dados abaixo para cadastrar um animal.</p>
+
+        <p>Preencha os dados do animal.</p>
+
       </div>
 
-      <form className={styles.formulario} onSubmit={cadastrar}>
+      <div className={styles.formulario}>
+
         <label>
           Nome
+
           <input
             type="text"
+            placeholder="Ex: Thor"
             value={nome}
-            onChange={(event) => setNome(event.target.value)}
-            placeholder="Ex.: Thor"
+            onChange={(evento) => setNome(evento.target.value)}
           />
+
         </label>
 
         <label>
           Espécie
+
           <input
             type="text"
+            placeholder="Ex: Cachorro"
             value={especie}
-            onChange={(event) => setEspecie(event.target.value)}
-            placeholder="Ex.: Cachorro"
+            onChange={(evento) => setEspecie(evento.target.value)}
           />
+
         </label>
 
         <label>
           Raça
+
           <input
             type="text"
+            placeholder="Ex: Labrador"
             value={raca}
-            onChange={(event) => setRaca(event.target.value)}
-            placeholder="Ex.: Labrador"
+            onChange={(evento) => setRaca(evento.target.value)}
           />
+
         </label>
 
         <label>
           Sexo
-          <select
+
+          <input
+            type="text"
+            placeholder="Ex: Macho"
             value={sexo}
-            onChange={(event) => setSexo(event.target.value)}
-          >
-            <option value="">Selecione</option>
-            <option value="Macho">Macho</option>
-            <option value="Fêmea">Fêmea</option>
-          </select>
+            onChange={(evento) => setSexo(evento.target.value)}
+          />
+
         </label>
 
         <label>
           Idade
+
           <input
             type="number"
-            min="0"
+            placeholder="Ex: 4"
             value={idade}
-            onChange={(event) => setIdade(event.target.value)}
-            placeholder="Ex.: 4"
+            onChange={(evento) => setIdade(evento.target.value)}
           />
+
         </label>
 
         <label>
           Peso
+
           <input
             type="number"
-            min="0"
-            step="0.1"
+            placeholder="Ex: 32.5"
             value={peso}
-            onChange={(event) => setPeso(event.target.value)}
-            placeholder="Ex.: 12.5"
+            onChange={(evento) => setPeso(evento.target.value)}
           />
+
         </label>
 
         <label>
-          Nome do tutor
+          Nome do Tutor
+
           <input
             type="text"
+            placeholder="Ex: João"
             value={nomeTutor}
-            onChange={(event) => setNomeTutor(event.target.value)}
-            placeholder="Ex.: João"
+            onChange={(evento) => setNomeTutor(evento.target.value)}
           />
+
         </label>
 
-        <button type="submit" disabled={carregando}>
-          {carregando ? 'Cadastrando...' : 'Cadastrar'}
+        <button onClick={cadastrarPet}>
+          Cadastrar
         </button>
-      </form>
 
-      {mensagem && <p className={styles.sucesso}>{mensagem}</p>}
-      {erro && <p className={styles.erro}>{erro}</p>}
+        <p>{mensagem}</p>
+
+      </div>
+
     </section>
-  )
-}
 
-export default CadastroPet
+  )
+
+}
