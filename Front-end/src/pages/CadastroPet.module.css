@@ -53,14 +53,14 @@
   opacity: 0.6;
 }
 
-.sucesso {
-  margin-bottom: 0;
-  color: #33b621;
+.mensagemSucesso {
+  color: green;
+  font-weight: bold;
 }
 
-.erro {
-  margin-bottom: 0;
-  color: #b3261e;
+.mensagemErro {
+  color: red;
+  font-weight: bold;
 }
 
 @media (max-width: 650px) {

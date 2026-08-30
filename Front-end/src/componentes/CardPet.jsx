@@ -1,6 +1,6 @@
 import styles from './CardPet.module.css'
 
-function CardPet({ pet }) {
+export function CardPet({ pet }) {
   return (
     <article className={styles.card}>
       <h3>{pet.nome}</h3>
@@ -14,5 +14,3 @@ function CardPet({ pet }) {
     </article>
   )
 }
-
-export default CardPet

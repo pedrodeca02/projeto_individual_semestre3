@@ -6,7 +6,6 @@ export function ListaPets() {
   const [pets, setPets] = useState([])
 
   function buscarPets() {
-
     axios.get("http://localhost:8080/pets")
       .then((response) => {
         setPets(response.data)

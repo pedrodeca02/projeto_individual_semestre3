@@ -44,9 +44,3 @@
   opacity: 0.8;
 
 }
-
-@media (max-width: 650px) {
-  .lista {
-    grid-template-columns: 1fr;
-  }
-}
