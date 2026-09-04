@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import CardPet from '../componentes/CardPet'
+import { CardPet } from '../componentes/CardPet'
 import styles from './ListaPets.module.css'
 import axios from 'axios'
+
+
 export function ListaPets() {
   const [pets, setPets] = useState([])
 

@@ -1,6 +1,15 @@
 import styles from './Cabecalho.module.css'
 
-function Cabecalho({ pagina, setPagina }) {
+export function Cabecalho(props) {
+
+  function abrirCadastro() {
+    props.setPagina('cadastro')
+  }
+
+  function abrirLista() {
+    props.setPagina('lista')
+  }
+
   return (
     <header className={styles.cabecalho}>
       <div>
@@ -9,22 +18,15 @@ function Cabecalho({ pagina, setPagina }) {
       </div>
 
       <nav className={styles.menu}>
-        <button
-          className={pagina === 'cadastro' ? styles.ativo : ''}
-          onClick={() => setPagina('cadastro')}
-        >
+        <button onClick={abrirCadastro}>
           Cadastrar
         </button>
 
-        <button
-          className={pagina === 'lista' ? styles.ativo : ''}
-          onClick={() => setPagina('lista')}
-        >
+        <button onClick={abrirLista}>
           Visualizar
         </button>
+
       </nav>
     </header>
   )
 }
-
-export default Cabecalho

@@ -1,27 +1,28 @@
 import { useState } from 'react'
-import Cabecalho from './componentes/Cabecalho'
-import {CadastroPet} from './pages/CadastroPet'
-import {ListaPets} from './pages/ListaPets'
+import { Cabecalho } from './componentes/Cabecalho'
+import { CadastroPet } from './pages/CadastroPet'
+import { ListaPets } from './pages/ListaPets'
 import styles from './App.module.css'
 
 function App() {
-  const [pagina, setPagina] = useState('cadastro')
-  const [pets, setPets] = useState([])
 
-  function adicionarPet(pet) {
-    setPets([...pets, { ...pet, id: pets.length + 1 }])
+  const [pagina, setPagina] = useState('cadastro')
+  let conteudo
+  if (pagina === 'cadastro') {
+    conteudo = <CadastroPet />
+  } else {
+    conteudo = <ListaPets />
   }
 
   return (
     <>
-      <Cabecalho pagina={pagina} setPagina={setPagina} />
+      <Cabecalho
+        pagina={pagina}
+        setPagina={setPagina}
+      />
 
       <main className={styles.conteudo}>
-        {pagina === 'cadastro' ? (
-          <CadastroPet adicionarPet={adicionarPet} />
-        ) : (
-          <ListaPets pets={pets} />
-        )}
+        {conteudo}
       </main>
     </>
   )

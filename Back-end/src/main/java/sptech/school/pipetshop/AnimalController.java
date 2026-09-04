@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/pets")
 public class AnimalController {
     private final JdbcTemplate template;
